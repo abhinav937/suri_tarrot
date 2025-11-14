@@ -27,15 +27,15 @@ html {
 }
 
 :root {
-    --primary-color: #D4AF37;
-    --secondary-color: #B8860B;
+    --primary-color: #FFC125;
+    --secondary-color: #DAA520;
     --accent-color: #f5e6d3;
     --dark-color: #2c2416;
     --light-color: #faf8f5;
     --text-color: #333;
     --text-light: #666;
     --white: #ffffff;
-    --gradient: linear-gradient(135deg, #D4AF37 0%, #B8860B 100%);
+    --gradient: linear-gradient(135deg, #FFC125 0%, #DAA520 100%);
 }
 
 body {
@@ -561,8 +561,8 @@ section {
     right: 0;
     bottom: 0;
     background: 
-        radial-gradient(circle at 20% 50%, rgba(212, 175, 55, 0.03) 0%, transparent 50%),
-        radial-gradient(circle at 80% 80%, rgba(212, 175, 55, 0.03) 0%, transparent 50%);
+        radial-gradient(circle at 20% 50%, rgba(255, 193, 37, 0.03) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(255, 193, 37, 0.03) 0%, transparent 50%);
     pointer-events: none;
 }
 
@@ -638,7 +638,7 @@ section {
     object-fit: contain;
     border-radius: 50%;
     border: 5px solid var(--primary-color);
-    box-shadow: 0 8px 25px rgba(212, 175, 55, 0.25), 0 0 0 8px rgba(212, 175, 55, 0.1);
+    box-shadow: 0 8px 25px rgba(255, 193, 37, 0.25), 0 0 0 8px rgba(255, 193, 37, 0.1);
     background: var(--white);
     padding: 12px;
     position: relative;
@@ -648,7 +648,7 @@ section {
 
 .profile-logo:hover {
     transform: scale(1.02);
-    box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3), 0 0 0 8px rgba(212, 175, 55, 0.15);
+    box-shadow: 0 10px 30px rgba(255, 193, 37, 0.3), 0 0 0 8px rgba(255, 193, 37, 0.15);
 }
 
 .about-name {
@@ -695,7 +695,7 @@ section {
     background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
     color: var(--white);
     border-radius: 12px;
-    box-shadow: 0 6px 20px rgba(212, 175, 55, 0.3);
+    box-shadow: 0 6px 20px rgba(255, 193, 37, 0.3);
     font-weight: 600;
     letter-spacing: 0.5px;
     text-transform: uppercase;
@@ -711,7 +711,7 @@ section {
     background: linear-gradient(135deg, var(--light-color) 0%, var(--white) 100%);
     border-radius: 15px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
-    border: 2px dashed rgba(212, 175, 55, 0.3);
+    border: 2px dashed rgba(255, 193, 37, 0.3);
 }
 
 .element-item {
@@ -722,7 +722,7 @@ section {
     border: 2px solid var(--primary-color);
     border-radius: 25px;
     background: var(--white);
-    box-shadow: 0 4px 10px rgba(212, 175, 55, 0.15);
+    box-shadow: 0 4px 10px rgba(255, 193, 37, 0.15);
     transition: all 0.3s ease;
     letter-spacing: 0.5px;
     text-transform: uppercase;
@@ -730,7 +730,7 @@ section {
 
 .element-item:hover {
     transform: translateY(-3px);
-    box-shadow: 0 6px 15px rgba(212, 175, 55, 0.25);
+    box-shadow: 0 6px 15px rgba(255, 193, 37, 0.25);
     background: var(--primary-color);
     color: var(--white);
 }
@@ -821,7 +821,7 @@ section {
     right: -50%;
     width: 200%;
     height: 200%;
-    background: radial-gradient(circle, rgba(212, 175, 55, 0.05) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(255, 193, 37, 0.05) 0%, transparent 70%);
     pointer-events: none;
 }
 
@@ -838,7 +838,7 @@ section {
     border-radius: 12px;
     font-style: italic;
     color: var(--white);
-    box-shadow: 0 6px 20px rgba(212, 175, 55, 0.3);
+    box-shadow: 0 6px 20px rgba(255, 193, 37, 0.3);
     font-weight: 600;
     letter-spacing: 0.5px;
     position: relative;
@@ -1430,7 +1430,7 @@ section {
     color: var(--text-color);
     font-size: 1rem;
     line-height: 1.6;
-    border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+    border-bottom: 1px solid rgba(255, 193, 37, 0.2);
 }
 
 .pricing-notes-list li:last-child {
@@ -1973,7 +1973,7 @@ section {
     font-size: 1.1rem;
     font-weight: 500;
     padding: 0.75rem 1.5rem;
-    background: rgba(212, 175, 55, 0.1);
+    background: rgba(255, 193, 37, 0.1);
     border: 2px solid var(--primary-color);
     border-radius: 25px;
     transition: all 0.3s ease;
@@ -1983,7 +1983,7 @@ section {
     background: var(--primary-color);
     color: var(--dark-color);
     transform: translateY(-2px);
-    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+    box-shadow: 0 4px 15px rgba(255, 193, 37, 0.3);
 }
 
 .footer-icon {
@@ -2006,7 +2006,7 @@ section {
 
 .footer-divider {
     height: 1px;
-    background: linear-gradient(to right, transparent, rgba(212, 175, 55, 0.3), transparent);
+    background: linear-gradient(to right, transparent, rgba(255, 193, 37, 0.3), transparent);
     margin: 2rem 0;
 }
 
