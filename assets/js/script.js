@@ -26,44 +26,80 @@ if (navToggle && navMenu) {
     });
 }
 
-// Enhanced Smooth Scrolling for all anchor links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
+// Tab-style Navigation - Show only selected section
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.nav-menu a[href^="#"]');
+
+// Hide all sections except home by default
+sections.forEach(section => {
+    if (section.id !== 'home') {
+        section.style.display = 'none';
+    }
+});
+
+// Function to show a specific section and hide others
+function showSection(sectionId) {
+    sections.forEach(section => {
+        if (section.id === sectionId) {
+            section.style.display = 'block';
+            // Scroll to top of page
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        } else {
+            section.style.display = 'none';
+        }
+    });
+    
+    // Update active nav link
+    navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === `#${sectionId}`) {
+            link.classList.add('active');
+        }
+    });
+    
+    // Update URL
+    if (history.pushState) {
+        history.pushState(null, null, `#${sectionId}`);
+    }
+}
+
+// Handle all internal anchor link clicks (nav, buttons, footer, etc.)
+document.querySelectorAll('a[href^="#"]').forEach(link => {
+    link.addEventListener('click', function (e) {
         const href = this.getAttribute('href');
         
-        // Skip if it's just "#"
-        if (href === '#' || href === '#!') {
+        // Skip if it's just "#" or external links
+        if (href === '#' || href === '#!' || href.startsWith('#http')) {
             return;
         }
         
         const target = document.querySelector(href);
-        if (target) {
+        if (target && target.tagName === 'SECTION') {
             e.preventDefault();
-            
-            // Get navbar height for offset
-            const navbar = document.querySelector('.navbar');
-            const navbarHeight = navbar ? navbar.offsetHeight : 80;
-            
-            // Calculate target position
-            const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - navbarHeight;
-            
-            // Smooth scroll with fallback
-            if ('scrollBehavior' in document.documentElement.style) {
-                window.scrollTo({
-                    top: targetPosition,
-                    behavior: 'smooth'
-                });
-            } else {
-                // Fallback for older browsers
-                smoothScrollFallback(targetPosition);
-            }
-            
-            // Update URL without jumping (optional)
-            if (history.pushState) {
-                history.pushState(null, null, href);
-            }
+            const sectionId = href.substring(1); // Remove the #
+            showSection(sectionId);
         }
     });
+});
+
+// Handle initial page load with hash
+document.addEventListener('DOMContentLoaded', () => {
+    const hash = window.location.hash.substring(1);
+    if (hash && document.getElementById(hash)) {
+        showSection(hash);
+    } else {
+        showSection('home');
+    }
+});
+
+// Handle browser back/forward buttons
+window.addEventListener('popstate', () => {
+    const hash = window.location.hash.substring(1);
+    if (hash && document.getElementById(hash)) {
+        showSection(hash);
+    } else {
+        showSection('home');
+    }
 });
 
 // Fallback smooth scroll function for older browsers
