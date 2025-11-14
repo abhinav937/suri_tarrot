@@ -373,6 +373,84 @@ document.querySelectorAll('.pricing-carousel').forEach(carousel => {
     }, { passive: true });
 });
 
+// Services Accordion for Mobile
+document.addEventListener('DOMContentLoaded', () => {
+    const serviceCards = document.querySelectorAll('.service-card');
+    const serviceToggles = document.querySelectorAll('.service-toggle');
+    const serviceHeaders = document.querySelectorAll('.service-header-mobile');
+    
+    // Toggle service card on button click
+    serviceToggles.forEach((toggle, index) => {
+        const card = serviceCards[index];
+        
+        toggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            toggleServiceCard(card, toggle);
+        });
+    });
+    
+    // Toggle service card on header click (for better mobile UX)
+    serviceHeaders.forEach((header, index) => {
+        const card = serviceCards[index];
+        const toggle = serviceToggles[index];
+        
+        header.addEventListener('click', (e) => {
+            // Only toggle if click wasn't on the button itself
+            if (!e.target.closest('.service-toggle')) {
+                toggleServiceCard(card, toggle);
+            }
+        });
+    });
+    
+    function toggleServiceCard(card, toggle) {
+        const isActive = card.classList.contains('active');
+        
+        // Close all other cards (optional: uncomment if you want only one open at a time)
+        // serviceCards.forEach((otherCard, otherIndex) => {
+        //     if (otherCard !== card) {
+        //         otherCard.classList.remove('active');
+        //         serviceToggles[otherIndex].setAttribute('aria-expanded', 'false');
+        //     }
+        // });
+        
+        if (isActive) {
+            card.classList.remove('active');
+            toggle.setAttribute('aria-expanded', 'false');
+        } else {
+            card.classList.add('active');
+            toggle.setAttribute('aria-expanded', 'true');
+            
+            // Smooth scroll to card if needed (optional)
+            setTimeout(() => {
+                const cardTop = card.getBoundingClientRect().top + window.pageYOffset;
+                const navbar = document.querySelector('.navbar');
+                const navbarHeight = navbar ? navbar.offsetHeight : 80;
+                const offsetTop = cardTop - navbarHeight - 20;
+                
+                window.scrollTo({
+                    top: offsetTop,
+                    behavior: 'smooth'
+                });
+            }, 100);
+        }
+    }
+    
+    // Handle resize to reset accordion state if needed
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(() => {
+            // Reset accordion on desktop (if window is resized from mobile to desktop)
+            if (window.innerWidth > 768) {
+                serviceCards.forEach((card, index) => {
+                    card.classList.add('active'); // Show all on desktop
+                    serviceToggles[index].setAttribute('aria-expanded', 'true');
+                });
+            }
+        }, 250);
+    }, { passive: true });
+});
+
 // Calendly integration note
 // To set up Calendly:
 // 1. Go to https://calendly.com and create a free account
